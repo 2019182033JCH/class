@@ -1,38 +1,16 @@
-import pico2d
-import play_state
+from pico2d import *
+# import play_state
 import logo_state
-pico2d.open_canvas()
-# start_state = logo_state  # 모듈을 변수로 설정
-#
+start_state = logo_state  # 모듈을 변수로 저장
 
-# start_state.enter()  # 초기화
-# # 게임 루프
-# while start_state.running:
-#     start_state.handle_events()
-#     start_state.update()
-#     start_state.draw()
-#     pico2d.delay(0.01)
-# start_state.exit()  # 종료
-#
-# start_state = play_state
-# start_state.enter()  # 초기화
-# # 게임 루프
-# while start_state.running:
-#     start_state.handle_events()
-#     start_state.update()
-#     start_state.draw()
-#     pico2d.delay(0.01)
-# start_state.exit()  # 종료
+open_canvas()
+start_state.enter()  # 초기화
 
-
-states = [logo_state, play_state]
-for state in states:
-    state.enter()
-    while state.running:
-        state.handle_events()
-        state.update()
-        state.draw()
-    state.exit()
-
-pico2d.close_canvas()
-
+# game main loop code
+while start_state.running:
+    start_state.handle_events()
+    start_state.update()
+    start_state.draw()
+    delay(0.05)
+exit()  # 종료
+close_canvas()

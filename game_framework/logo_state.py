@@ -31,11 +31,13 @@ def update():
     logo_time += 0.01
     pass
 
+
 def draw():
     clear_canvas()
     image.draw(400, 300)
     update_canvas()
     pass
+
 
 def handle_events():
     events = get_events()
