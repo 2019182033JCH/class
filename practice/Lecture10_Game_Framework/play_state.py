@@ -2,6 +2,7 @@ from pico2d import *
 import title_state
 import game_framework
 import item_state
+import boy_state
 
 
 class Grass:
@@ -17,6 +18,8 @@ class Boy:
         self.frame = 0
         self.dir = 1
         self.image = load_image('animation_sheet.png')
+        self.man = None
+        self.man = load_image('animation_sheet.png')
         self.item = None
         self.ball_image = load_image('ball21x21.png')
         self.big_ball_image = load_image('ball41x41.png')
@@ -38,11 +41,15 @@ class Boy:
         elif self.item == 'BigBall':
             self.big_ball_image.draw(self.x+10, self.y+50)
 
+        if self.man == 'Add':
+            self.image.clip_draw(self.frame*100, 100, 100, 100, self.x+10, self.y+50)
+        elif self.man == 'Delete':
+            self.image.clip_draw(self.frame*100, 0, 100, 100, self.x+10, self.y+50)
+
         if self.dir == 1:
             self.image.clip_draw(self.frame*100, 100, 100, 100, self.x, self.y)
         else:
             self.image.clip_draw(self.frame*100, 0, 100, 100, self.x, self.y)
-
 
 
 def handle_events():
@@ -56,6 +63,8 @@ def handle_events():
                 game_framework.quit()
             elif event.key == SDLK_i:
                 game_framework.push_state(item_state)
+            elif event.key == SDLK_b:
+                game_framework.push_state(boy_state)
             # game_framework.change_state(title_state)
 
 
