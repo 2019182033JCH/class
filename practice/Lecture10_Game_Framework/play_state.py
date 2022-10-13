@@ -43,8 +43,7 @@ class Boy:
 
         if self.man == 'Add':
             self.image.clip_draw(self.frame*100, 100, 100, 100, self.x+10, self.y+50)
-        elif self.man == 'Delete':
-            self.image.clip_draw(self.frame*100, 0, 100, 100, self.x+10, self.y+50)
+
 
         if self.dir == 1:
             self.image.clip_draw(self.frame*100, 100, 100, 100, self.x, self.y)

@@ -41,6 +41,6 @@ def handle_events():
                         play_state.boy.man = 'Add'
                         game_framework.pop_state()
                     case pico2d.SDLK_KP_MINUS:
-                        play_state.boy.man = 'Delete'
+                        play_state.boy.man = None
                         game_framework.pop_state()
 
