@@ -43,7 +43,7 @@ def handle_events():
 open_canvas()
 
 background = load_image('summer_bg.png')
-# character = load_image('animation.png')
+character = load_image('animation.png')
 
 # background.draw_now(640, 360)
 # character.draw_now(200, 150)
@@ -70,43 +70,26 @@ last_way = 1
 
 while running:
     clear_canvas()
-    # background.draw_now(400, 300)
+    background.draw_now(400, 300)
 
     if x_dir == 0 and y_dir == 0:
         if last_way == 1:
-            character = load_image('idle.png')
-            frame = (frame + 1) % 4
-            delay(0.1)
-            character.clip_draw(frame * 67, 0, 75, 100, x, y)
+            character.clip_draw(frame * 67+1, 0, 64, 64, x, y)
         elif last_way == -1:
-            character = load_image('idler.png')
-            frame = (frame + 1) % 4
-            delay(0.1)
-            character.clip_draw(frame * 67, 0, 75, 100, x, y)
+            character.clip_draw(frame * 65, 86, 64, 64, x, y)
     elif x_dir == 1:
-        character = load_image('Walk.png')
-        frame = (frame + 1) % 8
-        delay(0.01)
-        character.clip_draw(frame * 67 + 30, 0, 64, 100, x, y)
+        character.clip_draw(frame * 67 + 30, 200, 64, 64, x, y)
     elif x_dir == -1:
-        character = load_image('Walker.png')
-        frame = (frame + 1) % 8
-        delay(0.01)
-        character.clip_draw(frame * 67 + 20, 0, 64, 100, x, y)
+        character.clip_draw(frame * 67 + 20, 286, 64, 64, x, y)
     if y_dir == 1 or y_dir == -1:
         if last_way == 1:
-            character = load_image('Walk.png')
-            frame = (frame + 1) % 8
-            delay(0.01)
-            character.clip_draw(frame * 67 + 30, 0, 64, 100, x, y)
+            character.clip_draw(frame * 67 + 30, 0, 64, 64, x, y)
         elif last_way == -1:
-            character = load_image('Walker.png')
-            frame = (frame + 1) % 8
-            delay(0.01)
-            character.clip_draw(frame * 67 + 20, 0, 64, 100, x, y)
+            character.clip_draw(frame * 67 + 30, 0, 64, 64, x, y)
     update_canvas()
 
     handle_events()
+    frame = (frame + 1) % 8
     if x_dir == 1 and x < 800:
         x += x_dir * 10
     elif x_dir == -1 and x > 0:
@@ -117,5 +100,25 @@ while running:
         y += y_dir * 10
 
     delay(0.05)
+
+# class background:
+#     def __init__(self):
+#         self.image = load_image('spring_bg.png')
+#
+#     def draw(self):
+#         self.image.draw(640, 360)
+#
+#
+# class Boy:
+#     def __init__(self):
+#         self.x, self.y = 0, 90
+#         self.frame = 0
+#         self.image = load_image('Protect.png')
+#
+#     def draw(self):
+#         self.image.clip_draw(200, 100)
+
+
+# delay(5)
 
 close_canvas()

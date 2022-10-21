@@ -18,6 +18,7 @@ def exit():
     pass
 
 def update():
+    play_state.update()
     pass
 
 def draw():
@@ -38,9 +39,10 @@ def handle_events():
                     case pico2d.SDLK_ESCAPE:
                         game_framework.pop_state()
                     case pico2d.SDLK_KP_PLUS:
-                        play_state.boy.man = 'Add'
-                        game_framework.pop_state()
+                        play_state.add_one_boy()
+                        pass
                     case pico2d.SDLK_KP_MINUS:
-                        play_state.boy.man = None
-                        game_framework.pop_state()
+                        play_state.delete_one_boy()
+                        pass
+
 

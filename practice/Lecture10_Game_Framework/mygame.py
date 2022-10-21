@@ -3,6 +3,7 @@ import game_framework
 import logo_state
 import play_state
 import item_state
+import boy_state
 
 open_canvas()
 game_framework.run(play_state)

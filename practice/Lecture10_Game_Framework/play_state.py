@@ -1,3 +1,4 @@
+import random
 from pico2d import *
 import title_state
 import game_framework
@@ -14,12 +15,10 @@ class Grass:
 
 class Boy:
     def __init__(self):
-        self.x, self.y = 0, 90
-        self.frame = 0
+        self.x, self.y = random.randint(0, 800), 90
+        self.frame = random.randint(0, 7)
         self.dir = 1
         self.image = load_image('animation_sheet.png')
-        self.man = None
-        self.man = load_image('animation_sheet.png')
         self.item = None
         self.ball_image = load_image('ball21x21.png')
         self.big_ball_image = load_image('ball41x41.png')
@@ -40,11 +39,6 @@ class Boy:
             self.ball_image.draw(self.x+10, self.y+50)
         elif self.item == 'BigBall':
             self.big_ball_image.draw(self.x+10, self.y+50)
-
-        if self.man == 'Add':
-            self.image.clip_draw(self.frame*100, 100, 100, 100, self.x+10, self.y+50)
-
-
         if self.dir == 1:
             self.image.clip_draw(self.frame*100, 100, 100, 100, self.x, self.y)
         else:
@@ -67,22 +61,30 @@ def handle_events():
             # game_framework.change_state(title_state)
 
 
+# boy = None
+boys = []  # 여러 명의 소년들
+
+grass = None
+running = None
 
 def enter():
-    global boy, grass, running
-    boy = Boy()
+    global grass, running
+    boys.append(Boy())
+    boys.append(Boy())
     grass = Grass()
     running = True
 
 
 def exit():
-    global boy, grass
-    del boy
+    global grass
+    for boy in boys:
+        del boy
     del grass
 
 
 def update():
-    boy.update()
+    for boy in boys:
+        boy.update()
 
 
 def draw():
@@ -93,7 +95,8 @@ def draw():
 
 def draw_world():
     grass.draw()
-    boy.draw()
+    for boy in boys:
+        boy.draw()
 
 
 def pause():
@@ -101,3 +104,18 @@ def pause():
 
 def resume():
     pass
+
+
+def add_one_boy():
+    boys.append(Boy())
+
+
+def delete_one_boy():
+    # del boys[-1] 아래 내용과 동일
+    if len(boys) >= 2:
+        boys.pop()  # 리스트의 맨 마지막 요소를 꺼낸다. 즉 제거하는 것과 같다.
+
+
+def set_boy_item(item):
+    for boy in boys:
+        boy.item = item
