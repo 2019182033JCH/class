@@ -110,7 +110,7 @@ class AUTO_RUN:
         print("ENTER AUTO_RUN")
 
         # 어떤 이벤트 때문에, RUN 으로 들어왔는지 파악을 하고 , 그 이벤트에 따라서 실제 방향을 결정
-
+        self.dir = 1
         if event == AD:
             if self.x > 800:
                 self.x = 800
