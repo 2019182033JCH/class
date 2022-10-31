@@ -25,31 +25,35 @@ def enter():
     boy = Boy()
     grass = Grass()
 
+
 # 종료
 def exit():
     global boy, grass
     del boy
     del grass
 
+
 def update():
     boy.update()
+
 
 def draw_world():
     grass.draw()
     boy.draw()
+
 
 def draw():
     clear_canvas()
     draw_world()
     update_canvas()
 
+
 def pause():
     pass
 
+
 def resume():
     pass
-
-
 
 
 def test_self():
@@ -58,6 +62,7 @@ def test_self():
     pico2d.open_canvas()
     game_framework.run(play_state)
     pico2d.clear_canvas()
+
 
 if __name__ == '__main__':
     test_self()
